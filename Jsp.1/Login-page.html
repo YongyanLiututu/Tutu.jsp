@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎来到TUTU的页面</title>
+    <link rel="stylesheet" href="TuTu.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="tit" >
+        <h1>Register</h1>
+<!--         <a href="#">Login?</a>-->
+    </div>
+    <form action="#" method="get">
+
+        <table>
+
+            <tr>
+<!--                <td>Username</td>-->
+<!--                <td class="input">-->
+                    <input name="username" type="text" placeholder="Username">
+                    <br>
+                    <span id="username_err" class="err_msg" style="display: none">The username is not available!!</span>
+<!--                </td>-->
+
+            </tr>
+
+            <tr>
+
+
+                    <input name="password" type="password" placeholder="password">
+                    <br>
+                    <span id="password_err" class="err_msg" style="display: none">The password is not available!!</span>
+
+            </tr>
+
+
+            <tr>
+
+            <input name="tel" type="text" placeholder="Phone-number">
+                    <br>
+                    <span id="tel_err" class="err_msg" style="display: none">The phone-number is not available!!</span>
+
+            </tr>
+
+        </table>
+
+
+            <button>Register</button>
+<!--        <input value="Register" type="submit" id="reg_btn">-->
+
+        <br class="clear">
+    </form>
+    <a href="#">Login?</a>
+</div>
+
+
+<script>
+
+  
+    var userna = document.getElementById("username");
+    userna.onblur = check;
+
+    function check() {
+        var username = userna.value.trim();
+        var reg = /^\w{6,12}$/;//测试长度是否合理
+        var flag = reg.test(username);
+        if (flag) {
+            document.getElementById("username_err").style.display = 'none';
+        } else {
+            document.getElementById("username_err").style.display = '';
+        }
+
+        return flag;
+    }
+
+    
+    var password = document.getElementById("password");
+    password.onblur = Password;
+
+    function Password() {
+        var password = password.value.trim();
+        var reg = /^\w{6,12}$/;
+        var flag = reg.test(password);
+        if (flag) {
+            document.getElementById("password_err").style.display = 'none';
+        } else {
+            document.getElementById("password_err").style.display = '';
+        }
+
+        return flag;
+    }
+
+
+
+    var phone = document.getElementById("tel");
+    phone.onblur = Phone;
+
+    function Phone() {
+        var tel = phone.value.trim();
+        var reg = /^[1]\d{10}$/;//开头是为1，并且要长度为10
+        var flag = reg.test(tel);
+        if (flag) {
+            document.getElementById("tel_err").style.display = 'none';
+        } else {
+            document.getElementById("tel_err").style.display = '';
+        }
+
+        return flag;
+    }
+
+
+
+    var form = document.getElementById("reg-form");
+    form.onsubmit = function () {
+        var flag = check() && Password() && Phone();
+        return flag;
+    }
+
+</script>
+</body>
+</html>
